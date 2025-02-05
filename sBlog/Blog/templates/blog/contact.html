@@ -1,0 +1,58 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block message %}
+
+    {% if messages %}
+    {% for message in messages %} 
+    
+    <p {% if message.tags %}  class="alert alert-{{message.tags}} alert-dismissible fade-show" {% endif %} > 
+          {{message}} </p>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"  >
+        <span aria-hidden="true"> &times; </span>
+    </button>
+       {% endfor %}
+   {% endif %}
+{% endblock message %}
+
+{% block content %}
+
+<div class="col-sm-10">
+    <h3 class=" text-white  my-5" > Contact Page </h3>
+    
+    <form action="{% url 'contact' %}" , method="POST">
+      {% csrf_token %}
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputName">Name</label>
+                <input type="text" class="form-control" id="inputName" name="name">
+              </div>
+
+              
+          <div class="form-group col-md-6">
+            <label for="inputEmail">Email</label>
+            <input type="email" class="form-control" id="inputEmail" name="email">
+          </div>
+          
+          
+          
+          <div class="form-group col-md-12">
+            <label for="inputAdress">Address</label>
+            <input type="text" class="form-control" id="inputAddress" name="address">
+          </div>
+
+          <div class="form-group col-md-12">
+            <label for="message"> Message</label>
+            <textarea class="form-control" id="Message" rows="3" name="message"> </textarea>
+          </div>
+
+          </div>
+    
+        <button type="submit" class="btn btn-primary">Send</button>
+      </form>
+
+</div>
+
+
+
+{% endblock content %} 
